@@ -722,7 +722,7 @@
   <section class="title-wrap">
     <h1>Prototipo: App Inteligente de Salud Sexual Femenina</h1>
     <p>
-      Demo con seguimiento diario estilo Flo/Clue, deteccion de patrones de riesgo, analisis educativo con IA supervisada
+      Demo con seguimiento diario del ciclo, deteccion de patrones de riesgo, analisis educativo con IA supervisada
       y aprendizaje por flashcards. La app orienta, no reemplaza diagnostico medico.
     </p>
   </section>
@@ -765,7 +765,7 @@
         <div class="screen-wrap">
           <section class="screen active" id="screen-track">
             <article class="card">
-              <h3>Funciones tipo Flo/Clue (simuladas)</h3>
+              <h3>Funciones de seguimiento del ciclo (simuladas)</h3>
               <div class="feature-grid">
                 <div class="metric">
                   <small>Proximo periodo estimado</small>
@@ -842,7 +842,7 @@
             <article class="analysis-prompt visible" id="analysisPrompt">
               <strong style="font-size:0.82rem; color:#5a2143;">Patron detectado por seguimiento</strong>
               <p class="mini-note" id="promptText" style="color:#613f66;">
-                Llevas 3 dias con sintomas compatibles de infeccion. Quieres pasar a Analisis IA y detallar mas?
+                Llevas 3 dias con sintomas similares. Quieres pasar a Analisis IA y detallar mas?
               </p>
               <div class="prompt-actions">
                 <button id="promptAnalyzeBtn">Si, continuar</button>
@@ -866,7 +866,7 @@
             <article class="analysis-prompt" id="detailPrompt">
               <strong style="font-size:0.82rem; color:#5a2143;">Sugerencia inteligente</strong>
               <p class="mini-note" id="detailPromptText" style="color:#613f66;">
-                Detectamos 3 dias con patron asociado a posible infeccion. Te gustaria detallar sintomas para mejorar la orientacion?
+                Detectamos 3 dias con un patron repetido. Te gustaria detallar sintomas para mejorar la orientacion?
               </p>
               <div class="prompt-actions">
                 <button id="openDetailBtn">Si, detallar</button>
@@ -893,7 +893,7 @@
               <h3>Resultado educativo del sistema</h3>
               <div class="result" id="resultText"></div>
 
-              <h3 style="margin-top:10px;">Afecciones vinculadas (orientativo)</h3>
+              <h3 style="margin-top:10px;">Posibles escenarios comunes (orientativo)</h3>
               <ul class="linked" id="linkedList"></ul>
 
               <div class="sim-track"><div class="sim-fill" id="simFill"></div></div>
@@ -923,7 +923,7 @@
             <article class="learning-hero">
               <strong style="font-family:'Space Grotesk',sans-serif; font-size:0.93rem;">Centro de aprendizaje femenino</strong>
               <p class="mini-note" style="margin-top:6px;">
-                Microlecciones para entender sintomas, prevencion de ITS y decisiones de cuidado oportunas.
+                Microlecciones para entender sintomas frecuentes, prevenir molestias y tomar mejores decisiones de cuidado.
               </p>
               <div class="badge-row">
                 <span class="badge">Flashcards</span>
@@ -959,7 +959,7 @@
             <article class="learn-panel active" id="panel-flash">
               <article class="flashcard" id="flashcard">
                 <h4 id="flashTitle">Sintoma que requiere atencion</h4>
-                <p id="flashContent">Ardor al orinar por varios dias junto con dolor pelvico puede ser una senal de irritacion o infeccion. Registrar la evolucion mejora la orientacion.</p>
+                <p id="flashContent">Ardor al orinar por varios dias junto con dolor pelvico puede ser una senal de irritacion. Registrar la evolucion mejora la orientacion.</p>
                 <p class="mini-note" id="flashProgress">Tarjeta 1 de 3</p>
               </article>
 
@@ -973,11 +973,11 @@
               <div class="case-box">
                 <h4 style="margin:0; font-family:'Space Grotesk',sans-serif; font-size:0.9rem;">Caso guiado (ejemplo realista)</h4>
                 <p class="mini-note" id="caseText">
-                  Usuaria con 3 dias de ardor al orinar + irritacion + dolor pelvico moderado. Sin fiebre reportada.
+                  Usuaria con 3 dias de ardor al orinar + irritacion + dolor pelvico moderado.
                 </p>
                 <button class="btn-ghost" id="revealCaseBtn">Ver orientacion educativa</button>
                 <p class="mini-note hidden" id="caseAnswer">
-                  Orientacion: mantener seguimiento y considerar consulta si pasa de 72h o aumenta dolor. Detallar olor/flujo ayuda a diferenciar afecciones vinculadas.
+                  Orientacion: mantener seguimiento y considerar consulta si pasa de 72h o aumenta el malestar.
                 </p>
               </div>
               <button class="btn-ghost" id="nextCaseBtn">Siguiente caso</button>
@@ -995,7 +995,7 @@
             <article class="compare">
               <strong style="display:block; margin-bottom:5px;">Diferencia clave frente a apps convencionales:</strong>
               Esta propuesta no solo predice periodo. Tambien detecta patrones de sintomas, activa analisis preventivo,
-              sugiere detalle clinico educativo y ofrece aprendizaje guiado para tomar decisiones informadas.
+              sugiere detalle adicional y ofrece aprendizaje guiado para tomar decisiones informadas.
             </article>
           </section>
         </div>
@@ -1100,15 +1100,15 @@
       its: [
         {
           title: 'Ardor al orinar por varios dias',
-          content: 'Si aparece junto con dolor pelvico e irritacion, conviene registrar duracion y consultar si no mejora.'
+          content: 'Si aparece junto con dolor pelvico e irritacion, conviene registrar duracion y buscar orientacion si no mejora.'
         },
         {
           title: 'Flujo con olor o color inusual',
-          content: 'Puede relacionarse con desequilibrio vaginal o infeccion. La higiene no debe incluir duchas vaginales internas.'
+          content: 'Puede relacionarse con un desajuste en la zona intima. Evita duchas vaginales internas y observa cambios.'
         },
         {
           title: 'Prevencion practica',
-          content: 'Hidratacion, ropa interior transpirable y deteccion temprana reducen complicaciones.'
+          content: 'Hidratacion, ropa interior transpirable y registro temprano ayudan a prevenir molestias mayores.'
         }
       ],
       ciclo: [
@@ -1122,37 +1122,37 @@
         },
         {
           title: 'Cuando observar mas',
-          content: 'Dolor intenso o sangrado abundante fuera de patron ameritan consulta profesional.'
+          content: 'Si aparece dolor intenso o sangrado fuera de lo habitual, es buena idea consultar con un profesional.'
         }
       ],
       senales: [
         {
           title: 'Senales para no postergar',
-          content: 'Fiebre, dolor severo, olor fuerte persistente o sangrado irregular repetido son alertas clinicas.'
+          content: 'Malestar intenso, fiebre o cambios persistentes son senales para pedir orientacion profesional.'
         },
         {
           title: 'Preparar la consulta',
-          content: 'Lleva registros de dias, sintomas, severidad y factores asociados para mejorar la evaluacion medica.'
+          content: 'Lleva registro de dias, sintomas y severidad para explicar mejor tu situacion durante la consulta.'
         },
         {
           title: 'Autocuidado informado',
-          content: 'Una app puede orientar, pero no sustituye examen fisico ni pruebas de laboratorio.'
+          content: 'Una app puede orientar y educar, pero no reemplaza la evaluacion profesional cuando hay dudas.'
         }
       ]
     };
 
     const caseLibrary = [
       {
-        caseText: 'Usuaria con 3 dias de ardor al orinar + irritacion + dolor pelvico moderado. Sin fiebre reportada.',
-        answer: 'Orientacion: seguimiento activo y consulta si supera 72h o aumenta el dolor.'
+        caseText: 'Usuaria con 3 dias de ardor al orinar + irritacion + dolor pelvico moderado.',
+        answer: 'Orientacion: seguimiento activo y consulta si supera 72h o aumenta el malestar.'
       },
       {
-        caseText: 'Usuaria con flujo inusual y olor persistente por 4 dias, con molestias durante relaciones.',
-        answer: 'Orientacion: sugerir valoracion profesional para descartar vaginosis u otra infeccion vaginal.'
+        caseText: 'Usuaria con flujo inusual y olor persistente por 4 dias, con incomodidad diaria.',
+        answer: 'Orientacion: mantener registro y pedir orientacion profesional para resolver la molestia.'
       },
       {
-        caseText: 'Usuaria con dolor pelvico severo, fiebre y ardor al orinar desde ayer.',
-        answer: 'Orientacion: escenario de alerta, recomendar consulta medica pronta.'
+        caseText: 'Usuaria con dolor pelvico fuerte y malestar general desde ayer.',
+        answer: 'Orientacion: escenario de alerta, se recomienda consulta pronta.'
       }
     ];
 
@@ -1160,32 +1160,32 @@
       {
         q: 'Si una usuaria registra 3 dias seguidos de ardor + irritacion + dolor pelvico, la app deberia:',
         options: [
-          'Ignorar porque puede ser normal siempre',
-          'Sugerir ampliar sintomas y activar analisis educativo',
-          'Dar un diagnostico definitivo'
+          'Ignorar y esperar sin registrar nada',
+          'Sugerir ampliar sintomas y activar orientacion educativa',
+          'Dar una conclusion medica definitiva'
         ],
         correct: 1,
-        feedback: 'Correcto. La app orienta y mejora precision educativa pidiendo mas detalle, sin diagnosticar.'
+        feedback: 'Correcto. La app orienta y mejora su apoyo educativo pidiendo mas detalle, sin diagnosticar.'
       },
       {
-        q: 'Que diferencia clave tiene esta propuesta frente a apps solo de ciclo?',
+        q: 'Que diferencia clave tiene esta propuesta frente a apps basicas de ciclo?',
         options: [
-          'Solo cambia colores',
-          'Incluye IA preventiva y aprendizaje en salud sexual',
-          'No registra sintomas'
+          'Solo cambia el diseno de pantalla',
+          'Incluye orientacion preventiva y aprendizaje en salud femenina',
+          'No permite registrar sintomas diarios'
         ],
         correct: 1,
         feedback: 'Correcto. Integra seguimiento, analisis de patrones y educacion activa.'
       },
       {
-        q: 'Cuando se recomienda consulta profesional segun la app?',
+        q: 'Segun la app, cuando conviene buscar orientacion profesional?',
         options: [
-          'Cuando hay persistencia, empeora o aparecen alertas como fiebre/sangrado inusual',
-          'Nunca, porque la app reemplaza al medico',
-          'Solo si lo pide el calendario'
+          'Cuando el malestar persiste, empeora o hay senales de alerta',
+          'Nunca, porque la app reemplaza al profesional',
+          'Solo cuando cambia la fecha del periodo'
         ],
         correct: 0,
-        feedback: 'Correcto. Es una orientacion preventiva, no un diagnostico clinico.'
+        feedback: 'Correcto. Es una orientacion preventiva y educativa, no una evaluacion medica.'
       }
     ];
 
@@ -1406,7 +1406,7 @@
       if (streak >= 3) {
         analysisPrompt.classList.add('visible');
         detailPrompt.classList.add('visible');
-        promptText.textContent = `Llevas ${streak} dias seguidos con dolor pelvico + ardor + irritacion. Quieres ampliar detalle para un analisis educativo mas preciso?`;
+        promptText.textContent = `Llevas ${streak} dias seguidos con dolor pelvico + ardor + irritacion. Quieres ampliar detalle para mejorar la orientacion educativa?`;
       } else {
         analysisPrompt.classList.remove('visible');
         detailPrompt.classList.remove('visible');
@@ -1487,12 +1487,12 @@
 
       let msg = 'Este escenario educativo sugiere seguimiento preventivo y autocuidado informado.';
       if (hasInfectionPattern) {
-        msg = 'El patron registrado puede estar vinculado a irritacion urinaria o vaginal de probable origen infeccioso leve a moderado.';
+        msg = 'El patron registrado podria relacionarse con irritacion urinaria o vaginal comun.';
       }
       if (risk === 'Alto') {
-        msg += ' Por la combinacion de intensidad y persistencia, se recomienda consulta profesional pronta.';
+        msg += ' Por la combinacion de intensidad y persistencia, conviene buscar orientacion profesional pronto.';
       } else if (risk === 'Medio') {
-        msg += ' Si persiste mas dias o empeora, se recomienda evaluar con profesional de salud.';
+        msg += ' Si persiste mas dias o empeora, se recomienda consultar con un profesional de salud.';
       } else {
         msg += ' Mantener observacion y medidas preventivas es adecuado en este nivel.';
       }
@@ -1501,18 +1501,18 @@
 
     function buildLinkedConditions(risk) {
       const conditions = [
-        'Irritacion del tracto urinario (orientativo).',
-        'Vaginitis inespecifica o desequilibrio de flora vaginal (orientativo).'
+        'Irritacion urinaria leve (orientativo).',
+        'Desajuste vaginal temporal (orientativo).'
       ];
 
       if (detailSymptoms.includes('olor') || detailSymptoms.includes('flujo')) {
-        conditions.push('Posible vaginosis bacteriana (requiere evaluacion clinica).');
+        conditions.push('Cambios de flujo que conviene observar y comentar en consulta.');
       }
       if (detailSymptoms.includes('fiebre') || risk === 'Alto') {
-        conditions.push('Riesgo de progresion a infeccion mayor; priorizar consulta medica.');
+        conditions.push('Senal de alerta: priorizar orientacion profesional.');
       }
       if (detailSymptoms.includes('sangrado')) {
-        conditions.push('Sangrado no habitual: requiere valoracion profesional para descartar otras causas.');
+        conditions.push('Sangrado no habitual: recomendable consulta para mayor tranquilidad.');
       }
 
       return conditions;
