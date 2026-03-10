@@ -25,7 +25,6 @@
       --shadow: 0 20px 50px rgba(47, 31, 49, 0.18);
       --phone-shadow: 0 25px 70px rgba(49, 27, 40, 0.25);
       --radius-md: 14px;
-      --radius-lg: 20px;
     }
 
     * { box-sizing: border-box; }
@@ -39,7 +38,7 @@
         radial-gradient(circle at 88% 25%, #f6dce7 0%, transparent 30%),
         linear-gradient(160deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
       min-height: 100vh;
-      padding: 24px 14px 52px;
+      padding: 28px 14px 60px;
     }
 
     .title-wrap {
@@ -51,12 +50,16 @@
     .title-wrap h1 {
       margin: 0;
       font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.35rem, 1.1rem + 1.2vw, 2.2rem);
-      letter-spacing: 0.2px;
+      font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.4rem);
+      background: linear-gradient(130deg, #8a1c4a 20%, #6b2b8d 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
     }
 
     .title-wrap p {
-      margin: 8px auto 0;
+      margin: 10px auto 0;
       max-width: 850px;
       color: var(--muted);
       line-height: 1.5;
@@ -83,18 +86,18 @@
 
     .arrow-path {
       fill: none;
-      stroke: #8a1c4a;
-      stroke-width: 2.4;
+      stroke: #b02060;
+      stroke-width: 2.8;
       stroke-linecap: round;
-      stroke-dasharray: 7 7;
-      animation: arrowFlow 4.2s linear infinite;
-      filter: drop-shadow(0 0 2px rgba(138, 28, 74, 0.35));
+      stroke-dasharray: 8 5;
+      animation: arrowFlow 3.2s linear infinite;
+      filter: drop-shadow(0 1px 5px rgba(160, 32, 90, 0.55));
     }
 
     .arrow-dot {
-      fill: #6b2b8d;
-      opacity: 0.85;
-      animation: dotPulse 2s ease-in-out infinite;
+      fill: #7b30a0;
+      opacity: 0.95;
+      animation: dotPulse 1.6s ease-in-out infinite;
     }
 
     @keyframes arrowFlow {
@@ -109,27 +112,55 @@
 
     .callout {
       position: absolute;
-      width: min(300px, 43vw);
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid #dbc4da;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      padding: 12px;
+      width: min(272px, 39vw);
+      background: linear-gradient(135deg, #7a1840 0%, #5c228a 100%);
+      border: none;
+      border-radius: 18px;
+      box-shadow: 0 18px 52px rgba(100, 16, 70, 0.42), 0 5px 20px rgba(0, 0, 0, 0.16);
+      padding: 16px 18px 15px;
       z-index: 5;
       transition: top 0.35s ease, left 0.35s ease, right 0.35s ease;
+      overflow: visible;
+    }
+
+    .callout::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -13px;
+      left: 16px;
+      width: 28px;
+      height: 28px;
+      background: #fff;
+      border-radius: 50%;
+      color: #8a1c4a;
+      font-size: 0.8rem;
+      font-weight: 800;
+      font-family: "Space Grotesk", sans-serif;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 14px rgba(138, 28, 74, 0.45);
+    }
+
+    .callout.right-1::before,
+    .callout.right-2::before {
+      left: auto;
+      right: 16px;
     }
 
     .callout h4 {
       margin: 0 0 6px;
       font-family: "Space Grotesk", sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
     .callout p {
       margin: 0;
-      font-size: 0.82rem;
-      line-height: 1.36;
-      color: #5a4060;
+      font-size: 0.78rem;
+      line-height: 1.52;
+      color: rgba(255, 255, 255, 0.85);
     }
 
     .left-1 { top: 82px; left: 12px; }
@@ -138,94 +169,181 @@
     .right-2 { top: 500px; right: 0; }
 
     .callout.moving {
-      box-shadow: 0 18px 40px rgba(61, 26, 56, 0.2);
+      box-shadow: 0 24px 60px rgba(100, 16, 70, 0.52), 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
     .phone-shell {
       position: relative;
-      width: min(94vw, 396px);
-      height: 740px;
-      border-radius: 46px;
-      padding: 14px;
-      background:
-        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.2), transparent 32%),
-        linear-gradient(155deg, #3d2434, #1f1120);
-      box-shadow: var(--phone-shadow);
+      width: min(94vw, 390px);
+      height: 760px;
+      border-radius: 52px;
+      padding: 16px;
+      background: linear-gradient(155deg, #2a1620 0%, #160d1a 50%, #0f0714 100%);
+      box-shadow: 0 35px 80px rgba(12, 5, 18, 0.65), 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.05);
       z-index: 3;
+    }
+
+    .phone-shell::before {
+      content: '';
+      position: absolute;
+      top: 114px;
+      left: -4px;
+      width: 4px;
+      height: 30px;
+      background: #1a0e1d;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 46px 0 #1a0e1d;
+    }
+
+    .phone-shell::after {
+      content: '';
+      position: absolute;
+      top: 148px;
+      right: -4px;
+      width: 4px;
+      height: 64px;
+      background: #1a0e1d;
+      border-radius: 0 2px 2px 0;
     }
 
     .phone-notch {
       position: absolute;
-      top: 8px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 155px;
-      height: 24px;
+      width: 118px;
+      height: 27px;
       border-radius: 20px;
-      background: #120a13;
+      background: #080410;
       z-index: 4;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 3px 10px rgba(0,0,0,0.6);
     }
 
     .phone-screen {
       width: 100%;
       height: 100%;
-      border-radius: 34px;
+      border-radius: 36px;
       overflow: hidden;
-      background: #fdf9fd;
+      background: #f6f2f8;
       display: flex;
       flex-direction: column;
-      border: 1px solid #f1ddeb;
     }
 
     .app-header {
-      padding: 24px 14px 11px;
-      background: linear-gradient(140deg, #f5e8f1, #f7e7ef);
-      border-bottom: 1px solid #e6d2e2;
+      background: linear-gradient(145deg, #8a1c4a 0%, #5a208a 100%);
+      flex-shrink: 0;
+      overflow: hidden;
     }
 
-    .app-header small {
-      color: var(--accent);
+    .header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 26px 16px 12px;
+    }
+
+    .header-text small {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.63rem;
       font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .header-text h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.06rem;
+      line-height: 1.2;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .cycle-day-badge {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      border-radius: 14px;
+      padding: 7px 13px;
+      text-align: center;
+      flex-shrink: 0;
+      backdrop-filter: blur(4px);
+    }
+
+    .cycle-day-badge .num {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .cycle-day-badge .lbl {
+      display: block;
+      font-size: 0.57rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 3px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .phase-strip {
+      display: flex;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .phase-item {
+      flex: 1;
+      padding: 7px 2px;
+      text-align: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.45);
+      border-bottom: 2px solid transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       letter-spacing: 0.2px;
     }
 
-    .app-header h2 {
-      margin: 6px 0 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.04rem;
-      line-height: 1.2;
+    .phase-item.active {
+      color: #fff;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.8);
     }
 
     .tab-nav {
-      padding: 9px 10px;
+      padding: 10px 12px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 7px;
-      background: #faf2f8;
-      border-bottom: 1px solid #ebd8e7;
+      gap: 6px;
+      background: #f6f2f8;
+      border-bottom: 1px solid #ebe3ef;
+      flex-shrink: 0;
     }
 
     .tab-btn {
-      border: 1px solid #d8bfd5;
-      background: #fff;
-      color: #5a2143;
+      border: none;
+      background: transparent;
+      color: #9b7aa0;
       border-radius: 10px;
-      padding: 7px 6px;
-      font-size: 0.75rem;
+      padding: 8px 6px;
+      font-size: 0.73rem;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      transition: 0.18s ease;
     }
 
-    .tab-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 16px rgba(88, 29, 82, 0.16);
+    .tab-btn:hover:not(.active) {
+      background: #f8f0f5;
+      color: #7a4a74;
     }
 
     .tab-btn.active {
       background: linear-gradient(130deg, #8a1c4a, #6b2b8d);
       color: #fff;
-      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(138, 28, 74, 0.35);
     }
 
     .screen-wrap {
@@ -237,19 +355,10 @@
       position: absolute;
       inset: 0;
       display: none;
-      padding: 12px 12px 22px;
+      padding: 14px 13px 30px;
       overflow-y: auto;
-      gap: 10px;
+      gap: 12px;
       flex-direction: column;
-    }
-
-    .screen::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .screen::-webkit-scrollbar-thumb {
-      background: #d2b6d1;
-      border-radius: 999px;
     }
 
     .screen.active {
@@ -258,51 +367,64 @@
 
     .card {
       background: var(--card);
-      border: 1px solid #ecdbe7;
-      border-radius: var(--radius-md);
-      padding: 11px;
-      box-shadow: 0 10px 24px rgba(89, 43, 97, 0.08);
+      border: 1px solid #f0dcea;
+      border-radius: 16px;
+      padding: 13px;
+      box-shadow: 0 2px 10px rgba(138, 28, 74, 0.05);
     }
 
     .card h3 {
-      margin: 0 0 8px;
-      font-size: 0.89rem;
+      margin: 0 0 9px;
+      font-size: 0.88rem;
       font-family: "Space Grotesk", sans-serif;
+      color: #3d1a30;
+      letter-spacing: -0.01em;
     }
 
     .mini-note {
       margin: 0;
       color: var(--muted);
       font-size: 0.77rem;
-      line-height: 1.42;
+      line-height: 1.52;
     }
 
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 6px;
+      gap: 5px;
       margin-top: 8px;
     }
 
+    .cal-day-label {
+      text-align: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #b090b8;
+      padding: 2px 0 3px;
+      letter-spacing: 0.05em;
+    }
+
     .day-btn {
-      border: 1px solid #dbc3d8;
-      background: #fcf7fb;
+      border: 1.5px solid #edd8e9;
+      background: #fdf8fc;
       color: #4e3551;
       border-radius: 10px;
-      padding: 6px 0;
-      font-size: 0.75rem;
+      padding: 7px 0;
+      font-size: 0.72rem;
       font-weight: 600;
       cursor: pointer;
+      transition: 0.15s ease;
     }
 
+    .day-btn:hover { background: #f7eaf4; border-color: #d8bfd5; }
     .day-btn.selected {
       border-color: #8a1c4a;
-      background: #f5d8e5;
-      color: #5a2143;
+      background: linear-gradient(130deg, #f5d8e5, #ece0f5);
+      color: #5a1a40;
+      box-shadow: 0 2px 8px rgba(138, 28, 74, 0.18);
     }
-
-    .day-btn.logged { box-shadow: inset 0 -2px 0 #7a4db3; }
-    .day-btn.period { border-color: #c03f6e; background: #fce1eb; color: #7a1d45; }
+    .day-btn.logged { box-shadow: inset 0 -3px 0 #7a4db3; }
+    .day-btn.period { border-color: #d04a72; background: linear-gradient(135deg, #fde8ef, #fddaeb); color: #7a1d45; }
 
     .chips {
       display: flex;
@@ -311,26 +433,28 @@
     }
 
     .chip {
-      border: 1px solid #d8bfd5;
-      background: #fbf4fa;
+      border: 1.5px solid #ddc3d8;
+      background: #fdf7fc;
       color: #4a3450;
       border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 0.79rem;
+      padding: 7px 12px;
+      font-size: 0.77rem;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: 0.18s ease;
+      font-weight: 500;
     }
 
-    .chip:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 16px rgba(108, 40, 123, 0.12);
+    .chip:hover:not(.active) {
+      background: #f7ecf5;
+      border-color: #c8a6c5;
     }
 
     .chip.active {
-      background: var(--accent-soft);
+      background: linear-gradient(130deg, #f2d6e5, #ede5f5);
       border-color: #8a1c4a;
-      color: #5a2143;
+      color: #5a1a40;
       font-weight: 700;
+      box-shadow: 0 2px 6px rgba(138, 28, 74, 0.15);
     }
 
     label {
@@ -343,12 +467,15 @@
 
     select {
       width: 100%;
-      border: 1px solid #d8bfd5;
-      border-radius: 10px;
-      padding: 8px;
-      font-size: 0.86rem;
+      border: 1.5px solid #e2cede;
+      border-radius: 12px;
+      padding: 9px 32px 9px 11px;
+      font-size: 0.84rem;
       color: var(--ink);
-      background: #fff;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%238a1c4a' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 10px center;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
     }
 
     .duration {
@@ -363,41 +490,53 @@
 
     .btn {
       width: 100%;
-      border-radius: 12px;
-      padding: 10px 12px;
+      border-radius: 14px;
+      padding: 11px 14px;
       font-family: "Space Grotesk", sans-serif;
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 18px rgba(86, 26, 82, 0.16);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .btn-primary {
       border: none;
       color: #fff;
       background: linear-gradient(130deg, #8a1c4a, #6b2b8d);
+      box-shadow: 0 5px 18px rgba(138, 28, 74, 0.38);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(138, 28, 74, 0.48);
     }
 
     .btn-secondary {
-      border: 1px solid #c8a6c5;
-      background: #f8edf7;
+      border: 1.5px solid #d0a8c7;
+      background: #fff;
       color: #5a2143;
     }
 
+    .btn-secondary:hover {
+      background: #f8edf4;
+      border-color: #b890b5;
+    }
+
     .btn-ghost {
-      border: 1px solid #cfb0d0;
+      border: 1.5px solid #d8c0d5;
       background: #fff;
       color: #5a2143;
-      font-size: 0.8rem;
-      padding: 8px 9px;
-      border-radius: 10px;
+      font-size: 0.79rem;
+      padding: 9px 10px;
+      border-radius: 12px;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .btn-ghost:hover {
+      background: #f8edf4;
+      border-color: #b890b5;
     }
 
     .log-list {
@@ -412,12 +551,13 @@
     }
 
     .analysis-prompt {
-      border: 1px solid var(--warn-line);
-      background: var(--warn-bg);
-      border-radius: 12px;
-      padding: 10px;
+      border: none;
+      background: linear-gradient(130deg, #fff0f5, #f8eeff);
+      border-radius: 14px;
+      padding: 12px 14px;
       display: none;
       gap: 8px;
+      box-shadow: 0 3px 14px rgba(138, 28, 74, 0.1);
     }
 
     .analysis-prompt.visible { display: grid; }
@@ -429,23 +569,29 @@
 
     .prompt-actions button {
       flex: 1;
-      border: 1px solid #c8a6c5;
+      border: 1.5px solid #d0a8c7;
       background: #fff;
       color: #5a2143;
       border-radius: 10px;
       padding: 8px;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .prompt-actions button:hover {
+      background: #f8edf4;
     }
 
     .detail-box {
       display: none;
-      border: 1px solid #e4d0e0;
-      background: #fef9fe;
-      border-radius: 12px;
-      padding: 10px;
+      border: 1px solid #f0dcea;
+      background: #fff;
+      border-radius: 14px;
+      padding: 13px;
       gap: 8px;
+      box-shadow: 0 2px 10px rgba(138, 28, 74, 0.05);
     }
 
     .detail-box.visible { display: grid; }
@@ -466,13 +612,14 @@
     }
 
     .result {
-      border: 1px solid #e4d0e0;
-      background: #fef9fe;
-      border-radius: 12px;
-      padding: 10px;
-      font-size: 0.82rem;
+      border: none;
+      background: linear-gradient(145deg, #fdf4fa, #f5ecf8);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 0.81rem;
       color: #412944;
-      line-height: 1.38;
+      line-height: 1.42;
+      box-shadow: 0 2px 8px rgba(107, 43, 141, 0.07);
     }
 
     .linked {
@@ -519,52 +666,74 @@
     }
 
     .learning-hero {
-      border: 1px solid #dbc4da;
-      border-radius: var(--radius-lg);
-      padding: 11px;
-      background: linear-gradient(130deg, #f7e6f0, #f2e7fb);
-      box-shadow: 0 14px 24px rgba(93, 37, 90, 0.16);
+      border: none;
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(130deg, #8a1c4a 0%, #6b2b8d 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .learning-hero::before {
+      content: '';
+      position: absolute;
+      top: -25px;
+      right: -15px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      pointer-events: none;
+    }
+
+    .learning-hero strong {
+      color: #fff;
+    }
+
+    .learning-hero .mini-note {
+      color: rgba(255, 255, 255, 0.78);
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .badge {
-      border: 1px solid #cba9ce;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       border-radius: 999px;
-      padding: 5px 9px;
-      font-size: 0.74rem;
-      color: #5a2143;
-      background: #fff;
+      padding: 5px 10px;
+      font-size: 0.71rem;
+      color: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.14);
       font-weight: 700;
     }
 
     .flashcard {
-      border: 1px solid #e4d0e0;
-      border-radius: 12px;
-      background: #fff;
-      padding: 12px;
-      min-height: 172px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fdf4fa, #f5ecf8);
+      padding: 16px;
+      min-height: 160px;
       display: grid;
       align-content: start;
-      gap: 8px;
-      box-shadow: 0 10px 20px rgba(88, 38, 92, 0.1);
+      gap: 9px;
+      box-shadow: 0 4px 16px rgba(138, 28, 74, 0.08);
     }
 
     .flashcard h4 {
       margin: 0;
       font-family: "Space Grotesk", sans-serif;
       font-size: 0.92rem;
+      color: #4a1730;
     }
 
     .flashcard p {
       margin: 0;
-      font-size: 0.81rem;
-      line-height: 1.38;
+      font-size: 0.8rem;
+      line-height: 1.45;
       color: #5a4060;
     }
 
@@ -575,23 +744,25 @@
     }
 
     .compare {
-      border: 1px dashed #c8a6c5;
-      border-radius: 12px;
-      padding: 9px;
-      background: linear-gradient(130deg, #ffffff, #fbf3fa);
+      border: none;
+      border-radius: 14px;
+      padding: 13px 14px;
+      background: linear-gradient(130deg, #f7e6f0, #f2e7fb);
       font-size: 0.78rem;
-      color: #5a4060;
-      line-height: 1.35;
+      color: #4a3050;
+      line-height: 1.45;
+      box-shadow: 0 2px 12px rgba(107, 43, 141, 0.08);
     }
 
     .warning {
-      border: 1px solid #e4a8bf;
-      background: #ffe0ea;
+      border: none;
+      border-left: 3px solid #c03f6e;
+      background: linear-gradient(130deg, #fff0f4, #fde8f1);
       color: #6d1f42;
-      border-radius: 10px;
-      padding: 8px;
-      font-size: 0.76rem;
-      line-height: 1.34;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.75rem;
+      line-height: 1.4;
     }
 
     .feature-grid {
@@ -601,21 +772,24 @@
     }
 
     .metric {
-      border: 1px solid #e7d3e5;
-      border-radius: 10px;
-      padding: 8px;
-      background: #fff;
+      border: 1px solid #f0dcea;
+      border-radius: 12px;
+      padding: 10px;
+      background: linear-gradient(145deg, #fff, #fdf5fa);
+      box-shadow: 0 2px 8px rgba(138, 28, 74, 0.05);
     }
 
     .metric small {
       display: block;
-      color: #715476;
-      font-size: 0.72rem;
+      color: #805076;
+      font-size: 0.71rem;
+      margin-bottom: 3px;
     }
 
     .metric strong {
       font-size: 0.86rem;
-      color: #5a2143;
+      color: #5a1a40;
+      font-weight: 700;
     }
 
     .quick-row {
@@ -625,18 +799,23 @@
     }
 
     .pill-btn {
-      border: 1px solid #d4b6d3;
+      border: 1.5px solid #d4b6d3;
       background: #fff;
       color: #5a2143;
       border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 0.74rem;
+      padding: 7px 11px;
+      font-size: 0.73rem;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .pill-btn:hover:not(.active) {
+      background: #f8edf4;
     }
 
     .pill-btn.active {
-      background: #f2d6e5;
+      background: linear-gradient(130deg, #f2d6e5, #ece5f7);
       border-color: #8a1c4a;
     }
 
@@ -662,20 +841,25 @@
     }
 
     .mode-btn {
-      border: 1px solid #d3b5d2;
-      background: #fff;
+      border: none;
+      background: #f5edf5;
       color: #5a2143;
-      border-radius: 10px;
-      padding: 8px 6px;
-      font-size: 0.74rem;
+      border-radius: 12px;
+      padding: 10px 6px;
+      font-size: 0.73rem;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .mode-btn:hover:not(.active) {
+      background: #eedaec;
     }
 
     .mode-btn.active {
       background: linear-gradient(130deg, #8a1c4a, #6b2b8d);
       color: #fff;
-      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(138, 28, 74, 0.32);
     }
 
     .learn-panel {
@@ -694,29 +878,32 @@
     }
 
     .progress-box {
-      border: 1px solid #dcc3db;
-      border-radius: 10px;
-      padding: 7px;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 8px;
       text-align: center;
-      background: #fff;
-      font-size: 0.74rem;
+      background: linear-gradient(145deg, #fdf4fa, #f6eef8);
+      font-size: 0.72rem;
       color: #66476a;
+      box-shadow: 0 2px 8px rgba(107, 43, 141, 0.07);
     }
 
     .progress-box strong {
       display: block;
-      font-size: 0.9rem;
-      color: #5a2143;
-      margin-top: 2px;
+      font-size: 0.95rem;
+      color: #6b2b8d;
+      margin-top: 4px;
+      font-weight: 700;
     }
 
     .case-box {
-      border: 1px solid #e4d0e0;
-      border-radius: 12px;
-      padding: 11px;
+      border: 1px solid #f0dcea;
+      border-radius: 14px;
+      padding: 13px;
       background: #fff;
       display: grid;
-      gap: 8px;
+      gap: 9px;
+      box-shadow: 0 2px 8px rgba(138, 28, 74, 0.05);
     }
 
     .quiz-options {
@@ -725,15 +912,21 @@
     }
 
     .quiz-option {
-      border: 1px solid #d5b4d3;
-      border-radius: 10px;
+      border: 1.5px solid #d5b4d3;
+      border-radius: 12px;
       background: #fff;
       color: #4f3154;
-      padding: 8px;
+      padding: 9px 10px;
       text-align: left;
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       font-weight: 600;
       cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .quiz-option:hover:not(:disabled) {
+      background: #f8edf4;
+      border-color: #c8a6c5;
     }
 
     .quiz-option.correct {
@@ -747,6 +940,10 @@
     }
 
     .hidden { display: none; }
+
+    .screen::-webkit-scrollbar { width: 3px; }
+    .screen::-webkit-scrollbar-track { background: transparent; }
+    .screen::-webkit-scrollbar-thumb { background: #d8c0d5; border-radius: 999px; }
 
     @media (max-width: 980px) {
       .stage {
@@ -777,22 +974,22 @@
   </section>
 
   <main class="stage">
-    <article class="callout left-1" id="callout1">
+    <article class="callout left-1" id="callout1" data-num="1">
       <h4 id="callout1Title">Seguimiento diario real</h4>
       <p id="callout1Text">Registra sintomas por dia de ciclo, sintomas generales y severidad. La app calcula rachas automaticamente.</p>
     </article>
 
-    <article class="callout right-1" id="callout2">
+    <article class="callout right-1" id="callout2" data-num="2">
       <h4 id="callout2Title">Deteccion temprana de patron</h4>
       <p id="callout2Text">Si detecta 3 dias seguidos con sintomas compatibles, sugiere detallar mas para mejorar el analisis educativo.</p>
     </article>
 
-    <article class="callout left-2" id="callout3">
+    <article class="callout left-2" id="callout3" data-num="3">
       <h4 id="callout3Title">Mas que predecir ciclo</h4>
       <p id="callout3Text">Incluye pantalla educativa con microlecciones y flashcards para promover conciencia en salud sexual femenina.</p>
     </article>
 
-    <article class="callout right-2" id="callout4">
+    <article class="callout right-2" id="callout4" data-num="4">
       <h4 id="callout4Title">Visual + explicable</h4>
       <p id="callout4Text">Presenta orientacion preventiva, posibles afecciones vinculadas y mapa 2D educativo para entender el escenario.</p>
     </article>
@@ -800,7 +997,7 @@
     <svg class="arrow-layer" id="arrowLayer" aria-hidden="true">
       <defs>
         <marker id="arrowHead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-          <path d="M0,0 L10,4 L0,8 z" fill="#8a1c4a"></path>
+          <path d="M0,0 L10,4 L0,8 z" fill="#b02060"></path>
         </marker>
       </defs>
       <path id="arrowPath1" class="arrow-path" marker-end="url(#arrowHead)"></path>
@@ -817,8 +1014,22 @@
       <div class="phone-notch"></div>
       <div class="phone-screen">
         <header class="app-header">
-          <small>Asistente de bienestar femenino</small>
-          <h2>Monitoreo inteligente + educacion en salud sexual</h2>
+          <div class="header-row">
+            <div class="header-text">
+              <small>Bienestar femenino</small>
+              <h2>Seguimiento y salud</h2>
+            </div>
+            <div class="cycle-day-badge">
+              <span class="num" id="headerDayNum">4</span>
+              <span class="lbl">Día / 28</span>
+            </div>
+          </div>
+          <div class="phase-strip">
+            <span class="phase-item active">Mens.</span>
+            <span class="phase-item">Folicular</span>
+            <span class="phase-item">Ovulación</span>
+            <span class="phase-item">Lútea</span>
+          </div>
         </header>
 
         <nav class="tab-nav" aria-label="Navegacion de pantallas">
@@ -830,7 +1041,7 @@
         <div class="screen-wrap">
           <section class="screen active" id="screen-track">
             <article class="card" id="trackFeaturesCard">
-              <h3>Funciones de seguimiento del ciclo (simuladas)</h3>
+              <h3>Seguimiento del ciclo</h3>
               <div class="feature-grid">
                 <div class="metric">
                   <small>Proximo periodo estimado</small>
@@ -847,13 +1058,13 @@
             </article>
 
             <article class="card" id="trackCheckinCard">
-              <h3>Calendario del ciclo (marzo)</h3>
+              <h3>Calendario · Marzo</h3>
               <p class="mini-note">Selecciona un dia para cargar sintomas. Dias 1-5: menstruacion de referencia.</p>
               <div class="calendar-grid" id="calendarGrid"></div>
             </article>
 
             <article class="card" id="trackHistoryCard">
-              <h3>Registro diario: dia <span id="selectedDayLabel">4</span></h3>
+              <h3>Registro · día <span id="selectedDayLabel">4</span></h3>
               <div class="chips" id="symptomChips">
                 <button class="chip active" data-key="pelvico">Dolor pelvico</button>
                 <button class="chip active" data-key="ardor">Ardor al orinar</button>
@@ -879,7 +1090,7 @@
             </article>
 
             <article class="card">
-              <h3>Check-in diario rapido</h3>
+              <h3>Check-in rápido</h3>
               <div class="quick-row" id="quickCheckRow">
                 <button class="pill-btn" data-check="animo">Animo estable</button>
                 <button class="pill-btn" data-check="energia">Energia baja</button>
@@ -889,7 +1100,7 @@
             </article>
 
             <article class="card" id="trackRemindersCard">
-              <h3>Recordatorios inteligentes</h3>
+              <h3>Recordatorios</h3>
               <div class="toggle-list">
                 <label><input type="checkbox" id="remHydration" checked> Hidratarse y observar cambios</label>
                 <label><input type="checkbox" id="remLog" checked> Registrar sintomas al final del dia</label>
@@ -900,7 +1111,7 @@
             <button class="btn btn-secondary" id="saveDayBtn">Guardar sintomas del dia</button>
 
             <article class="card">
-              <h3>Historial rapido</h3>
+              <h3>Historial reciente</h3>
               <ul class="log-list" id="logList"></ul>
             </article>
 
@@ -940,7 +1151,7 @@
             </article>
 
             <article class="detail-box" id="detailBox">
-              <h3 style="margin:0;">Detalle ampliado de sintomas</h3>
+              <h3 style="margin:0;">Detalle ampliado</h3>
               <div class="detail-options">
                 <label><input type="checkbox" class="detail-check" value="fiebre"> Fiebre o sensacion febril</label>
                 <label><input type="checkbox" class="detail-check" value="olor"> Olor inusual en flujo</label>
@@ -955,10 +1166,10 @@
             <button class="btn btn-secondary" id="visualize2dBtn">Ver mapa 2D educativo</button>
 
             <article class="card hidden" id="analysisOutputCard">
-              <h3>Resultado educativo del sistema</h3>
+              <h3>Resultado educativo</h3>
               <div class="result" id="resultText"></div>
 
-              <h3 style="margin-top:10px;">Posibles escenarios comunes (orientativo)</h3>
+              <h3 style="margin-top:10px;">Escenarios orientativos</h3>
               <ul class="linked" id="linkedList"></ul>
 
               <div class="sim-track"><div class="sim-fill" id="simFill"></div></div>
@@ -986,7 +1197,7 @@
 
           <section class="screen" id="screen-learn">
             <article class="learning-hero" id="learnHeroCard">
-              <strong style="font-family:'Space Grotesk',sans-serif; font-size:0.93rem;">Centro de aprendizaje femenino</strong>
+              <strong style="font-family:'Space Grotesk',sans-serif; font-size:0.96rem;">Centro de aprendizaje</strong>
               <p class="mini-note" style="margin-top:6px;">
                 Microlecciones para entender sintomas frecuentes, prevenir molestias y tomar mejores decisiones de cuidado.
               </p>
@@ -1058,7 +1269,7 @@
             </article>
 
             <article class="compare" id="learnCompareCard">
-              <strong style="display:block; margin-bottom:5px;">Diferencia clave frente a apps convencionales:</strong>
+              <strong style="display:block; margin-bottom:6px;">Diferencia clave:</strong>
               Esta propuesta no solo predice periodo. Tambien detecta patrones de sintomas, activa analisis preventivo,
               sugiere detalle adicional y ofrece aprendizaje guiado para tomar decisiones informadas.
             </article>
@@ -1505,6 +1716,12 @@
 
     function renderCalendar() {
       calendarGrid.innerHTML = '';
+      ['L', 'M', 'M', 'J', 'V', 'S', 'D'].forEach(function(d) {
+        const lbl = document.createElement('span');
+        lbl.className = 'cal-day-label';
+        lbl.textContent = d;
+        calendarGrid.appendChild(lbl);
+      });
       for (let day = 1; day <= 30; day += 1) {
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -1531,8 +1748,20 @@
       }
     }
 
+    function updatePhaseStrip(day) {
+      const phaseItems = document.querySelectorAll('.phase-item');
+      phaseItems.forEach(function(item) { item.classList.remove('active'); });
+      if (day <= 5) { if (phaseItems[0]) { phaseItems[0].classList.add('active'); } }
+      else if (day <= 12) { if (phaseItems[1]) { phaseItems[1].classList.add('active'); } }
+      else if (day <= 15) { if (phaseItems[2]) { phaseItems[2].classList.add('active'); } }
+      else { if (phaseItems[3]) { phaseItems[3].classList.add('active'); } }
+    }
+
     function loadDay(day) {
       selectedDayLabel.textContent = day;
+      const headerDayEl = document.getElementById('headerDayNum');
+      if (headerDayEl) { headerDayEl.textContent = day; }
+      updatePhaseStrip(day);
       const data = dayRecords[day] || { symptoms: [], severity: 'leve' };
 
       symptomChips.forEach((chip) => {
