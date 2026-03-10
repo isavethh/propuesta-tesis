@@ -25,6 +25,7 @@
       --shadow: 0 20px 50px rgba(47, 31, 49, 0.18);
       --phone-shadow: 0 25px 70px rgba(49, 27, 40, 0.25);
       --radius-md: 14px;
+      --radius-lg: 20px;
     }
 
     * { box-sizing: border-box; }
@@ -38,7 +39,7 @@
         radial-gradient(circle at 88% 25%, #f6dce7 0%, transparent 30%),
         linear-gradient(160deg, var(--bg-1), var(--bg-2) 50%, var(--bg-3));
       min-height: 100vh;
-      padding: 28px 14px 60px;
+      padding: 24px 14px 52px;
     }
 
     .title-wrap {
@@ -51,13 +52,14 @@
       margin: 0;
       font-family: "Space Grotesk", sans-serif;
       font-size: clamp(1.35rem, 1.1rem + 1.2vw, 2.2rem);
+      letter-spacing: 0.2px;
     }
 
     .title-wrap p {
       margin: 8px auto 0;
       max-width: 850px;
       color: var(--muted);
-      line-height: 1.4;
+      line-height: 1.5;
       font-size: 0.95rem;
     }
 
@@ -70,6 +72,41 @@
       place-items: center;
     }
 
+    .arrow-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .arrow-path {
+      fill: none;
+      stroke: #8a1c4a;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-dasharray: 7 7;
+      animation: arrowFlow 4.2s linear infinite;
+      filter: drop-shadow(0 0 2px rgba(138, 28, 74, 0.35));
+    }
+
+    .arrow-dot {
+      fill: #6b2b8d;
+      opacity: 0.85;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes arrowFlow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -70; }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); opacity: 0.75; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+
     .callout {
       position: absolute;
       width: min(300px, 43vw);
@@ -78,7 +115,8 @@
       border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 12px;
-      z-index: 2;
+      z-index: 5;
+      transition: top 0.35s ease, left 0.35s ease, right 0.35s ease;
     }
 
     .callout h4 {
@@ -94,34 +132,14 @@
       color: #5a4060;
     }
 
-    .callout::after {
-      content: "";
-      position: absolute;
-      height: 2px;
-      top: 50%;
-      width: 76px;
-      background: var(--line);
-    }
-
-    .callout::before {
-      content: "";
-      position: absolute;
-      width: 9px;
-      height: 9px;
-      border-top: 2px solid var(--line);
-      border-right: 2px solid var(--line);
-      top: calc(50% - 4px);
-    }
-
     .left-1 { top: 82px; left: 12px; }
     .left-2 { top: 330px; left: 0; }
     .right-1 { top: 170px; right: 18px; }
     .right-2 { top: 500px; right: 0; }
 
-    .left-1::after, .left-2::after { right: -76px; }
-    .left-1::before, .left-2::before { right: -6px; transform: rotate(45deg); }
-    .right-1::after, .right-2::after { left: -76px; }
-    .right-1::before, .right-2::before { left: -6px; transform: rotate(-135deg); }
+    .callout.moving {
+      box-shadow: 0 18px 40px rgba(61, 26, 56, 0.2);
+    }
 
     .phone-shell {
       position: relative;
@@ -129,7 +147,9 @@
       height: 740px;
       border-radius: 46px;
       padding: 14px;
-      background: linear-gradient(155deg, #3d2434, #1f1120);
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.2), transparent 32%),
+        linear-gradient(155deg, #3d2434, #1f1120);
       box-shadow: var(--phone-shadow);
       z-index: 3;
     }
@@ -154,10 +174,11 @@
       background: #fdf9fd;
       display: flex;
       flex-direction: column;
+      border: 1px solid #f1ddeb;
     }
 
     .app-header {
-      padding: 25px 14px 12px;
+      padding: 24px 14px 11px;
       background: linear-gradient(140deg, #f5e8f1, #f7e7ef);
       border-bottom: 1px solid #e6d2e2;
     }
@@ -193,7 +214,12 @@
       font-size: 0.75rem;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(88, 29, 82, 0.16);
     }
 
     .tab-btn.active {
@@ -211,10 +237,19 @@
       position: absolute;
       inset: 0;
       display: none;
-      padding: 12px 12px 18px;
+      padding: 12px 12px 22px;
       overflow-y: auto;
       gap: 10px;
       flex-direction: column;
+    }
+
+    .screen::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .screen::-webkit-scrollbar-thumb {
+      background: #d2b6d1;
+      border-radius: 999px;
     }
 
     .screen.active {
@@ -226,6 +261,7 @@
       border: 1px solid #ecdbe7;
       border-radius: var(--radius-md);
       padding: 11px;
+      box-shadow: 0 10px 24px rgba(89, 43, 97, 0.08);
     }
 
     .card h3 {
@@ -238,7 +274,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 0.77rem;
-      line-height: 1.34;
+      line-height: 1.42;
     }
 
     .calendar-grid {
@@ -282,6 +318,12 @@
       padding: 7px 10px;
       font-size: 0.79rem;
       cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(108, 40, 123, 0.12);
     }
 
     .chip.active {
@@ -327,6 +369,12 @@
       font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(86, 26, 82, 0.16);
     }
 
     .btn-primary {
@@ -472,9 +520,10 @@
 
     .learning-hero {
       border: 1px solid #dbc4da;
-      border-radius: 12px;
+      border-radius: var(--radius-lg);
       padding: 11px;
       background: linear-gradient(130deg, #f7e6f0, #f2e7fb);
+      box-shadow: 0 14px 24px rgba(93, 37, 90, 0.16);
     }
 
     .badge-row {
@@ -503,6 +552,7 @@
       display: grid;
       align-content: start;
       gap: 8px;
+      box-shadow: 0 10px 20px rgba(88, 38, 92, 0.1);
     }
 
     .flashcard h4 {
@@ -528,7 +578,7 @@
       border: 1px dashed #c8a6c5;
       border-radius: 12px;
       padding: 9px;
-      background: #fff;
+      background: linear-gradient(130deg, #ffffff, #fbf3fa);
       font-size: 0.78rem;
       color: #5a4060;
       line-height: 1.35;
@@ -706,13 +756,12 @@
         gap: 14px;
       }
 
+      .arrow-layer { display: none; }
+
       .callout {
         position: static;
         width: min(92vw, 560px);
       }
-
-      .callout::after,
-      .callout::before { display: none; }
 
       .phone-shell { order: -1; }
     }
@@ -748,6 +797,22 @@
       <p id="callout4Text">Presenta orientacion preventiva, posibles afecciones vinculadas y mapa 2D educativo para entender el escenario.</p>
     </article>
 
+    <svg class="arrow-layer" id="arrowLayer" aria-hidden="true">
+      <defs>
+        <marker id="arrowHead" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 z" fill="#8a1c4a"></path>
+        </marker>
+      </defs>
+      <path id="arrowPath1" class="arrow-path" marker-end="url(#arrowHead)"></path>
+      <path id="arrowPath2" class="arrow-path" marker-end="url(#arrowHead)"></path>
+      <path id="arrowPath3" class="arrow-path" marker-end="url(#arrowHead)"></path>
+      <path id="arrowPath4" class="arrow-path" marker-end="url(#arrowHead)"></path>
+      <circle id="arrowDot1" class="arrow-dot" r="3.5"></circle>
+      <circle id="arrowDot2" class="arrow-dot" r="3.5"></circle>
+      <circle id="arrowDot3" class="arrow-dot" r="3.5"></circle>
+      <circle id="arrowDot4" class="arrow-dot" r="3.5"></circle>
+    </svg>
+
     <section class="phone-shell" aria-label="Vista de celular con interfaz multipantalla">
       <div class="phone-notch"></div>
       <div class="phone-screen">
@@ -764,7 +829,7 @@
 
         <div class="screen-wrap">
           <section class="screen active" id="screen-track">
-            <article class="card">
+            <article class="card" id="trackFeaturesCard">
               <h3>Funciones de seguimiento del ciclo (simuladas)</h3>
               <div class="feature-grid">
                 <div class="metric">
@@ -781,13 +846,13 @@
               </p>
             </article>
 
-            <article class="card">
+            <article class="card" id="trackCheckinCard">
               <h3>Calendario del ciclo (marzo)</h3>
               <p class="mini-note">Selecciona un dia para cargar sintomas. Dias 1-5: menstruacion de referencia.</p>
               <div class="calendar-grid" id="calendarGrid"></div>
             </article>
 
-            <article class="card">
+            <article class="card" id="trackHistoryCard">
               <h3>Registro diario: dia <span id="selectedDayLabel">4</span></h3>
               <div class="chips" id="symptomChips">
                 <button class="chip active" data-key="pelvico">Dolor pelvico</button>
@@ -823,7 +888,7 @@
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" id="trackRemindersCard">
               <h3>Recordatorios inteligentes</h3>
               <div class="toggle-list">
                 <label><input type="checkbox" id="remHydration" checked> Hidratarse y observar cambios</label>
@@ -852,7 +917,7 @@
           </section>
 
           <section class="screen" id="screen-analysis">
-            <article class="card">
+            <article class="card" id="analysisSummaryCard">
               <h3>Resumen del escenario</h3>
               <p class="mini-note" id="analysisSummaryText">
                 Seleccion actual: dolor pelvico moderado, ardor al orinar, irritacion. Duracion detectada: 3 dias.
@@ -920,7 +985,7 @@
           </section>
 
           <section class="screen" id="screen-learn">
-            <article class="learning-hero">
+            <article class="learning-hero" id="learnHeroCard">
               <strong style="font-family:'Space Grotesk',sans-serif; font-size:0.93rem;">Centro de aprendizaje femenino</strong>
               <p class="mini-note" style="margin-top:6px;">
                 Microlecciones para entender sintomas frecuentes, prevenir molestias y tomar mejores decisiones de cuidado.
@@ -932,7 +997,7 @@
               </div>
             </article>
 
-            <article class="card">
+            <article class="card" id="learnProgressCard">
               <h3>Tu progreso educativo</h3>
               <div class="progress-row">
                 <div class="progress-box">Racha de estudio<strong id="studyStreakText">4 dias</strong></div>
@@ -950,7 +1015,7 @@
               </select>
             </article>
 
-            <article class="learn-modes">
+            <article class="learn-modes" id="learnModesCard">
               <button class="mode-btn active" data-mode="flash">Flashcards</button>
               <button class="mode-btn" data-mode="cases">Casos guiados</button>
               <button class="mode-btn" data-mode="quiz">Mini quiz</button>
@@ -992,7 +1057,7 @@
               <button class="btn-ghost" id="nextQuizBtn">Siguiente pregunta</button>
             </article>
 
-            <article class="compare">
+            <article class="compare" id="learnCompareCard">
               <strong style="display:block; margin-bottom:5px;">Diferencia clave frente a apps convencionales:</strong>
               Esta propuesta no solo predice periodo. Tambien detecta patrones de sintomas, activa analisis preventivo,
               sugiere detalle adicional y ofrece aprendizaje guiado para tomar decisiones informadas.
@@ -1006,6 +1071,26 @@
   <script>
     const tabs = document.querySelectorAll('.tab-btn');
     const screens = document.querySelectorAll('.screen');
+    const stage = document.querySelector('.stage');
+    const arrowLayer = document.getElementById('arrowLayer');
+    const arrowPaths = [
+      document.getElementById('arrowPath1'),
+      document.getElementById('arrowPath2'),
+      document.getElementById('arrowPath3'),
+      document.getElementById('arrowPath4')
+    ];
+    const arrowDots = [
+      document.getElementById('arrowDot1'),
+      document.getElementById('arrowDot2'),
+      document.getElementById('arrowDot3'),
+      document.getElementById('arrowDot4')
+    ];
+    const calloutEls = [
+      document.getElementById('callout1'),
+      document.getElementById('callout2'),
+      document.getElementById('callout3'),
+      document.getElementById('callout4')
+    ];
     const calloutTitleEls = [
       document.getElementById('callout1Title'),
       document.getElementById('callout2Title'),
@@ -1246,12 +1331,56 @@
       ]
     };
 
+    const calloutPositionsByScreen = {
+      'screen-track': [
+        { top: '82px', left: '12px', right: 'auto' },
+        { top: '170px', left: 'auto', right: '18px' },
+        { top: '330px', left: '0', right: 'auto' },
+        { top: '500px', left: 'auto', right: '0' }
+      ],
+      'screen-analysis': [
+        { top: '88px', left: '10px', right: 'auto' },
+        { top: '138px', left: 'auto', right: '10px' },
+        { top: '370px', left: '0', right: 'auto' },
+        { top: '560px', left: 'auto', right: '0' }
+      ],
+      'screen-learn': [
+        { top: '82px', left: '4px', right: 'auto' },
+        { top: '208px', left: 'auto', right: '4px' },
+        { top: '442px', left: '0', right: 'auto' },
+        { top: '610px', left: 'auto', right: '0' }
+      ]
+    };
+
+    const arrowTargetsByScreen = {
+      'screen-track': [
+        ['#trackHistoryCard', '#trackCheckinCard'],
+        ['#trackFeaturesCard'],
+        ['#analysisPrompt'],
+        ['#trackRemindersCard']
+      ],
+      'screen-analysis': [
+        ['#analysisSummaryCard'],
+        ['#detailPrompt', '#detailBox'],
+        ['#analyzeBtn'],
+        ['#analysisOutputCard', '#visualize2dBtn']
+      ],
+      'screen-learn': [
+        ['#learnHeroCard'],
+        ['#learnModesCard'],
+        ['#learnProgressCard'],
+        ['#learnCompareCard']
+      ]
+    };
+
     let flashIndex = 0;
 
     function switchScreen(targetId) {
       tabs.forEach((btn) => btn.classList.toggle('active', btn.dataset.screen === targetId));
       screens.forEach((screen) => screen.classList.toggle('active', screen.id === targetId));
       updateCallouts(targetId);
+      updateCalloutPositions(targetId);
+      drawArrows(targetId);
       if (targetId === 'screen-analysis') {
         updateAnalysisSummary();
       }
@@ -1264,6 +1393,103 @@
           calloutTitleEls[index].textContent = item.title;
           calloutTextEls[index].textContent = item.text;
         }
+      });
+    }
+
+    function updateCalloutPositions(screenId) {
+      if (window.innerWidth <= 980) {
+        return;
+      }
+
+      const positions = calloutPositionsByScreen[screenId] || calloutPositionsByScreen['screen-track'];
+      positions.forEach((pos, idx) => {
+        const el = calloutEls[idx];
+        if (!el) {
+          return;
+        }
+
+        el.classList.add('moving');
+        el.style.top = pos.top;
+        el.style.left = pos.left;
+        el.style.right = pos.right;
+
+        setTimeout(() => {
+          el.classList.remove('moving');
+          drawArrows(screenId);
+        }, 360);
+      });
+    }
+
+    function getActiveScreenId() {
+      const active = document.querySelector('.screen.active');
+      return active ? active.id : 'screen-track';
+    }
+
+    function getVisibleTarget(selectors, activeScreen) {
+      for (let i = 0; i < selectors.length; i += 1) {
+        const el = activeScreen.querySelector(selectors[i]);
+        if (!el) {
+          continue;
+        }
+
+        const style = window.getComputedStyle(el);
+        if (style.display !== 'none' && style.visibility !== 'hidden' && el.offsetHeight > 0 && el.offsetWidth > 0) {
+          return el;
+        }
+      }
+      return null;
+    }
+
+    function drawArrows(screenId = getActiveScreenId()) {
+      if (window.innerWidth <= 980 || !stage || !arrowLayer) {
+        return;
+      }
+
+      const stageRect = stage.getBoundingClientRect();
+      const width = Math.max(1, Math.round(stageRect.width));
+      const height = Math.max(1, Math.round(stageRect.height));
+      arrowLayer.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+      const activeScreen = document.getElementById(screenId);
+      const targetSelectorGroups = arrowTargetsByScreen[screenId] || arrowTargetsByScreen['screen-track'];
+
+      calloutEls.forEach((callout, idx) => {
+        const path = arrowPaths[idx];
+        const dot = arrowDots[idx];
+        const selectors = targetSelectorGroups[idx] || [];
+        const target = activeScreen ? getVisibleTarget(selectors, activeScreen) : null;
+
+        if (!callout || !target || !path || !dot) {
+          if (path) {
+            path.setAttribute('d', '');
+          }
+          if (dot) {
+            dot.setAttribute('cx', '-20');
+            dot.setAttribute('cy', '-20');
+          }
+          return;
+        }
+
+        const callRect = callout.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const fromLeft = callout.classList.contains('left-1') || callout.classList.contains('left-2');
+
+        const sx = fromLeft
+          ? callRect.right - stageRect.left - 4
+          : callRect.left - stageRect.left + 4;
+        const sy = callRect.top - stageRect.top + (callRect.height * 0.5);
+
+        const tx = targetRect.left - stageRect.left + (targetRect.width * 0.5);
+        const ty = targetRect.top - stageRect.top + (targetRect.height * 0.5);
+
+        const curveX = fromLeft
+          ? sx + Math.max(55, (tx - sx) * 0.34)
+          : sx - Math.max(55, (sx - tx) * 0.34);
+        const curveY = sy + ((ty - sy) * 0.42);
+
+        path.setAttribute('d', `M ${sx} ${sy} Q ${curveX} ${curveY} ${tx} ${ty}`);
+        dot.setAttribute('cx', `${sx}`);
+        dot.setAttribute('cy', `${sy}`);
       });
     }
 
@@ -1438,6 +1664,7 @@
       renderLogs();
       updatePatternPrompts();
       updateAnalysisSummary();
+      drawArrows();
     });
 
     promptAnalyzeBtn.addEventListener('click', () => {
@@ -1450,10 +1677,12 @@
 
     openDetailBtn.addEventListener('click', () => {
       detailBox.classList.add('visible');
+      drawArrows('screen-analysis');
     });
 
     skipDetailBtn.addEventListener('click', () => {
       detailBox.classList.remove('visible');
+      drawArrows('screen-analysis');
     });
 
     saveDetailBtn.addEventListener('click', () => {
@@ -1565,6 +1794,7 @@
       update2DVisualization();
       visual2dPanel.classList.add('visible');
       visualize2dBtn.textContent = 'Ocultar mapa 2D educativo';
+      drawArrows('screen-analysis');
     });
 
     visualize2dBtn.addEventListener('click', () => {
@@ -1573,6 +1803,7 @@
       visualize2dBtn.textContent = visual2dPanel.classList.contains('visible')
         ? 'Ocultar mapa 2D educativo'
         : 'Ver mapa 2D educativo';
+      drawArrows('screen-analysis');
     });
 
     function renderFlashcard() {
@@ -1675,11 +1906,25 @@
     loadDay(selectedDay);
     updateAnalysisSummary();
     updateCallouts('screen-track');
+    updateCalloutPositions('screen-track');
+    drawArrows('screen-track');
     updateSimulator(severity.value);
     renderFlashcard();
     renderCase();
     renderQuiz();
     updateCyclePrediction();
+
+    screens.forEach((screen) => {
+      screen.addEventListener('scroll', () => {
+        if (screen.classList.contains('active')) {
+          drawArrows(screen.id);
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      drawArrows(getActiveScreenId());
+    });
   </script>
 </body>
 </html>
